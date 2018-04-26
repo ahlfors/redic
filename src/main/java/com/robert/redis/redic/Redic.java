@@ -65,7 +65,9 @@ public class Redic extends Jedis {
 	public Redic addNode(String nodeConnStr) {
 		String[] nodes = nodeConnStr.split(RedicNode.NODE_SEPARATOR);
 
-		return addNode(nodes[0], Arrays.asList(Arrays.copyOf(nodes, 1)));
+		//return addNode(nodes[0], Arrays.asList(Arrays.copyOf(nodes, 1)));
+		//一个分片的一个主和多个从
+		return addNode(nodes[0], Arrays.asList(Arrays.copyOfRange(nodes,1,nodes.length)));
 	}
 
 	public Redic addNode(String jedisConnStr, List<String> slaveConnStrs) {
